@@ -13,6 +13,21 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
+    public function createdProducts()
+    {
+        return $this->hasMany(Product::class, 'created_by');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function stockLogs()
+    {
+        return $this->hasMany(StockLog::class, 'created_by');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
