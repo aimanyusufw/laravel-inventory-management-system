@@ -25,7 +25,7 @@ class DashboardPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('dashboard')
-            ->path('dashboard')
+            ->path('')
             ->login()
             ->brandName("Inventory Management")
             ->colors([
