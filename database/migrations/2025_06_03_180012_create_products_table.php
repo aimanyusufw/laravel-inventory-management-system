@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('sku')->unique();
+            $table->string("image")->nullable();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
             $table->integer('current_stock')->default(0);
             $table->float('price');
+            $table->json('spesification');
             $table->text('description')->nullable();
             $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
             $table->softDeletes();
