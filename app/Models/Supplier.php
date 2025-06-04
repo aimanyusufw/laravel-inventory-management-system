@@ -10,6 +10,8 @@ class Supplier extends Model
 {
     use SoftDeletes, HasFactory;
 
+    protected $guarded = ["id"];
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
