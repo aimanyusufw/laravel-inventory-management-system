@@ -2,18 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Supplier extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory;
 
-    protected $guarded = ["id"];
+    protected $fillable = [
+        'name',
+        'contact_person',
+        'email',
+        'phone_number',
+        'address',
+        'country',
+        'tax_id',
+        'notes',
+    ];
 
-    public function transactions()
+    // Relasi
+    public function goodsReceipts(): HasMany
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(GoodsReceipt::class);
     }
 }

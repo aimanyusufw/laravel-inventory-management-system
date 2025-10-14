@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('sku')->unique();
+            $table->string('code')->unique();
             $table->string('name');
-            $table->foreignId('unit_id')->constrained('units'); // Referensi ke units
-            $table->text('description')->nullable();
-            $table->integer('lead_time')->nullable();
+            $table->string('type'); // RM_STORAGE, FG_STORAGE, QA_QUARANTINE, STAGING, MRO
+            $table->boolean('is_active')->default(true);
+            $table->decimal('capacity')->nullable();
             $table->timestamps();
         });
     }
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('locations');
     }
 };

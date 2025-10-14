@@ -2,36 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory;
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+    protected $fillable = [
+        'sku',
+        'name',
+        'description',
+        'lead_time',
+    ];
 
-    public function unit()
+    // Relasi
+    public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
     }
 
-    public function creator()
+    public function workOrders(): HasMany
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->hasMany(WorkOrder::class);
     }
 
-    public function transactionItems()
+    public function billOfMaterials(): HasMany
     {
-        return $this->hasMany(TransactionItem::class);
+        return $this->hasMany(BillOfMaterial::class);
     }
 
-    public function stockLogs()
+    public function giDetails(): HasMany
     {
-        return $this->hasMany(StockLog::class);
+        return $this->hasMany(GiDetail::class);
     }
 }
