@@ -80,6 +80,15 @@ class UserResource extends Resource
                         ->columnSpanFull(),
                 ])->columns(["sm" => 2])->columnSpan(2),
                 Forms\Components\Grid::make()->schema([
+                    Forms\Components\Section::make("Authority")
+                        ->description("details about the authority")
+                        ->schema([
+                            Forms\Components\Select::make('roles')
+                                ->relationship('roles', 'name')
+                                ->multiple()
+                                ->preload()
+                                ->searchable(),
+                        ]),
                     Forms\Components\Section::make("Time Stamps")
                         ->description("details of when data was changed and also created")
                         ->schema([
@@ -104,6 +113,12 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->placeholder("Phone is empty")
+                    ->searchable(),
+                Tables\Columns\BadgeColumn::make('roles.name')
+                    ->default("User has no role")
+                    ->colors([
+                        'danger' => 'User has no role'
+                    ])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->date()
