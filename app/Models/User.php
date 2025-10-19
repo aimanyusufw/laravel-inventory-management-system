@@ -6,14 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address',
         'password',
         'role',
         'is_active',
@@ -30,7 +33,7 @@ class User extends Authenticatable
         'is_active' => 'boolean',
     ];
 
-    // Relasi
+    // Relations
     public function goodsReceipts(): HasMany
     {
         return $this->hasMany(GoodsReceipt::class);

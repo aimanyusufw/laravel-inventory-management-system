@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Location extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'code',
@@ -23,7 +24,7 @@ class Location extends Model
         'capacity' => 'decimal:2',
     ];
 
-    // Relasi
+    // Relations
     public function inventory(): HasMany
     {
         return $this->hasMany(Inventory::class);

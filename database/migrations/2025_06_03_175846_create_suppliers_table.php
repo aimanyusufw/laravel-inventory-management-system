@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('tax_id')->nullable();
             $table->text('notes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

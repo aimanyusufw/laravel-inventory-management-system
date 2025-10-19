@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('status');
             $table->text('shipping_address')->nullable();
             $table->date('due_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

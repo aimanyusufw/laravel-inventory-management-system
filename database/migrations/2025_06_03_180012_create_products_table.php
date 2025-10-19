@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('unit_id')->constrained('units'); // Referensi ke units
             $table->text('description')->nullable();
             $table->integer('lead_time')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

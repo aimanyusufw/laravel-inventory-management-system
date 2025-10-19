@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BillOfMaterial extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class BillOfMaterial extends Model
         'is_optional' => 'boolean',
     ];
 
-    // Relasi
+    // Relations
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

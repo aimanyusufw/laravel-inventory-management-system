@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GoodsReceipt extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'gr_number',
@@ -22,7 +23,7 @@ class GoodsReceipt extends Model
         'date' => 'date',
     ];
 
-    // Relasi
+    // Relations
     public function supplier(): BelongsTo
     {
         return $this->belongsTo(Supplier::class);

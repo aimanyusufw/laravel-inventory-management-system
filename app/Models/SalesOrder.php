@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SalesOrder extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'so_number',
@@ -24,7 +25,7 @@ class SalesOrder extends Model
         'due_date' => 'date',
     ];
 
-    // Relasi
+    // Relations
     public function goodsIssues(): HasMany
     {
         return $this->hasMany(GoodsIssue::class, 'so_id');

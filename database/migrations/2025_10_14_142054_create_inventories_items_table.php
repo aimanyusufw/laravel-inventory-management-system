@@ -17,6 +17,7 @@ return new class extends Migration
             $table->boolean('is_raw_material')->default(true); // Material dibeli
             $table->decimal('safety_stock')->nullable();
             $table->text('notes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -34,6 +35,7 @@ return new class extends Migration
             $table->timestamp('received_at');
             $table->timestamp('last_counted_at')->nullable();
             $table->unique(['item_id', 'location_id', 'lot_number']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

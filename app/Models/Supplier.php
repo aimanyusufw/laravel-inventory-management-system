@@ -21,7 +21,7 @@ class Supplier extends Model
         'notes',
     ];
 
-    // Relasi
+    // Relations
     public function goodsReceipts(): HasMany
     {
         return $this->hasMany(GoodsReceipt::class);

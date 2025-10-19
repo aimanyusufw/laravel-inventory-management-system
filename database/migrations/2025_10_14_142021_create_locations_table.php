@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('type'); // RM_STORAGE, FG_STORAGE, QA_QUARANTINE, STAGING, MRO
             $table->boolean('is_active')->default(true);
             $table->decimal('capacity')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

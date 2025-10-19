@@ -10,11 +10,12 @@ return new class extends Migration
     {
         Schema::create('qc_approvals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inventory_id')->constrained('inventory'); // Mereferensikan item di gudang
-            $table->foreignId('user_id')->constrained('users'); // QC user yang approve
+            $table->foreignId('inventory_id')->constrained('inventory'); // Reference in inventories table
+            $table->foreignId('user_id')->constrained('users'); // QC user who approved
             $table->timestamp('approved_at');
             $table->string('result'); // PASS, FAIL
             $table->text('notes')->nullable();
+            $table->softDeletes();
             $table->string('qc_batch_number')->nullable();
         });
     }

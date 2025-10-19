@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // Pcs, Reel, Kg, Pallet
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

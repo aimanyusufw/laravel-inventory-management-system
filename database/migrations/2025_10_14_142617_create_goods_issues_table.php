@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('carrier_name')->nullable();
             $table->string('tracking_number')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

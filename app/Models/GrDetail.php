@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GrDetail extends Model
 {
-    use HasFactory;
-    public $timestamps = false; // Bagian dari GR, tidak perlu timestamps sendiri
+    use HasFactory, SoftDeletes;
+    public $timestamps = false; // Because part of Goods Receipt
 
     protected $fillable = [
         'received_qty',
@@ -23,7 +24,7 @@ class GrDetail extends Model
         'is_verified' => 'boolean',
     ];
 
-    // Relasi
+    // Relations
     public function goodsReceipt(): BelongsTo
     {
         return $this->belongsTo(GoodsReceipt::class, 'gr_id');

@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MaterialRequest extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'requested_qty',
@@ -23,7 +24,7 @@ class MaterialRequest extends Model
         'picked_at' => 'datetime',
     ];
 
-    // Relasi
+    // Relations
     public function workOrder(): BelongsTo
     {
         return $this->belongsTo(WorkOrder::class, 'wo_id');

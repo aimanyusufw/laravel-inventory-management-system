@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('status'); // PENDING, PICKING, FULFILLED
             $table->foreignId('picked_by_user_id')->nullable()->constrained('users');
             $table->timestamp('picked_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

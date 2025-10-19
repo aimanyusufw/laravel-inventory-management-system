@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('status'); // PLANNED, IN_PROCESS, COMPLETED
             $table->string('priority')->nullable();
             $table->timestamp('completed_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

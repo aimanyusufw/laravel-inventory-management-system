@@ -10,12 +10,13 @@ return new class extends Migration
     {
         Schema::create('bill_of_materials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products'); // Produk akhir
-            $table->foreignId('item_id')->constrained('items'); // Komponen yang dibutuhkan
+            $table->foreignId('product_id')->constrained('products'); // Final product
+            $table->foreignId('item_id')->constrained('items'); // Required component
             $table->decimal('required_qty', 15, 4);
             $table->text('notes')->nullable();
             $table->boolean('is_optional')->default(false);
-            $table->unique(['product_id', 'item_id']); // Satu komponen hanya sekali di satu BOM
+            $table->unique(['product_id', 'item_id']); // One component can only appear once in a BOM
+            $table->softDeletes();
         });
     }
     public function down()

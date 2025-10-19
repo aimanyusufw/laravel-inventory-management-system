@@ -12,10 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('gr_number')->unique();
             $table->foreignId('supplier_id')->constrained('suppliers');
-            $table->foreignId('user_id')->constrained('users'); // User yang menerima
+            $table->foreignId('user_id')->constrained('users'); // User who received
             $table->date('date');
             $table->string('status');
             $table->text('notes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GiDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
 
     protected $fillable = [
@@ -16,7 +17,7 @@ class GiDetail extends Model
         'notes',
     ];
 
-    // Relasi
+    // Relations
     public function goodsIssue(): BelongsTo
     {
         return $this->belongsTo(GoodsIssue::class, 'gi_id');

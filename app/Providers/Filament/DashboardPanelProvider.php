@@ -41,6 +41,7 @@ class DashboardPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->profile()
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    // Non-fillable karena harus diproses saat GR/Picking
+    // Non-fillable because filled automatically
     protected $guarded = [
         'id',
         'item_id',
         'location_id',
-        'received_at' // Diisi saat penerimaan
+        'received_at' // Filled when recived 
     ];
 
     protected $casts = [
@@ -26,7 +27,7 @@ class Inventory extends Model
         'last_counted_at' => 'datetime',
     ];
 
-    // Relasi
+    // Relations   
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);

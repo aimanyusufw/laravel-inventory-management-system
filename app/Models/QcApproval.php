@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class QcApproval extends Model
 {
-    use HasFactory;
-    public $timestamps = false; // Karena hanya punya approved_at
+    use HasFactory, SoftDeletes;
+    public $timestamps = false; // Disable timestamps if not needed
 
     protected $fillable = [
         'inventory_id', // FK
@@ -24,7 +25,7 @@ class QcApproval extends Model
         'approved_at' => 'datetime',
     ];
 
-    // Relasi
+    // Relations
     public function inventory(): BelongsTo
     {
         return $this->belongsTo(Inventory::class);
